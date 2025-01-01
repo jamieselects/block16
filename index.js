@@ -14,7 +14,7 @@
  * @param {Item[]} items - array of items
  */
 function logNames(items) {
-  // TODO: use `forEach`
+  return items.forEach(item => console.log(item.name));
 }
 
 /**
@@ -22,7 +22,7 @@ function logNames(items) {
  * @returns {string[]} an array of item names in all uppercase
  */
 function getUppercaseNames(items) {
-  // TODO: use `map`
+  return items.map(item => console.log(item.name.toUpperCase()));
 }
 
 /**
@@ -31,7 +31,7 @@ function getUppercaseNames(items) {
  * @returns {Item} - the item in `items` with the given `id`
  */
 function getItemById(items, id) {
-  // TODO: use `find`
+  return items.find(item => item.id === id);
 }
 
 /**
@@ -40,7 +40,11 @@ function getItemById(items, id) {
  * @returns {number} the price of the item named `name`
  */
 function getItemPriceByName(items, name) {
-  // TODO: use a loop!
+  for (const item of items) {
+    if (item.name === name) {
+      return item.price;
+    }
+  }
 }
 
 /**
@@ -49,7 +53,9 @@ function getItemPriceByName(items, name) {
  * @returns {Item[]} array of items that belong to the given `category`
  */
 function getItemsByCategory(items, category) {
-  // TODO: use `filter`
+  return items
+    .filter(item => item.category === category)
+    .map(item => item.name);
 }
 
 /**
@@ -57,7 +63,7 @@ function getItemsByCategory(items, category) {
  * @returns {number} the total quantity of all items
  */
 function countItems(items) {
-  // TODO: use `reduce`
+  return items.reduce((total, item) => total + item.quantity, 0);
 }
 
 /**
@@ -65,7 +71,7 @@ function countItems(items) {
  * @returns {number} the cost of all given items
  */
 function calculateTotalPrice(items) {
-  // TODO: use `reduce`
+  return items.reduce((total, item) => item.quantity * item.price, 0)
 }
 
 // --------------------- DO NOT CHANGE THE CODE BELOW ------------------------ //
@@ -85,7 +91,7 @@ console.log("Welcome! We carry the following items:");
 logNames(INVENTORY);
 
 console.log("Here are the names again in all uppercase:");
-console.log(getUppercaseNames(INVENTORY));
+getUppercaseNames(INVENTORY);
 
 console.log(`In total, we have ${countItems(INVENTORY)} items in stock.`);
 
